@@ -1,0 +1,140 @@
+
+
+
+:root {
+  --main-font: 'Satoshi', sans-serif;
+  --title-font: 'Panchang', sans-serif;
+
+  --color-white: rgba(255, 255, 255, 0.87);
+  --color-black: rgba(36, 36, 36, 1); /*#242424*/
+
+  --color-indigo: rgba(100, 108, 255, 1); /*#646cff*/
+  --color-indigo-light: rgba(83, 91, 242, 1); /*#535bf2*/
+
+
+  scroll-behavior: smooth;
+
+
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ===============================
+UTILITIES
+=============================== */
+
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: var(--main-font);
+  font-size: 1em;
+  line-height: 1.5;
+  color: var(--color-white);
+
+  background-color: var(--color-black);
+
+  
+  box-sizing: border-box;
+
+
+}
+
+.container {
+  margin: auto;
+  max-width: 1500px;
+  padding: 1em;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--title-font);
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 3.2em;
+}
+
+h2 {
+  font-size: 2.5em;
+}
+
+
+a {
+  font-weight: 500;
+  color: var(--color-indigo);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--color-indigo-light);
+}
+
+button {
+  padding: 0.6em 1.2em;
+  color: var(--color-black);
+
+  border-radius: 1em;
+  border: 0.2em solid var(--color-indigo);
+  background-color: var(--color-white);
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+button:hover {
+  background-color: var(--color-indigo);
+  color: var(--color-white)
+}
+
+button:focus,
+button:focus-visible {
+  outline: 0.2em auto -webkit-focus-ring-color;
+}
+
+canvas {
+  display: block;
+}
+
+
+/* ===============================
+HEADER
+=============================== */
+
+nav {
+  font-size: 1.1em;
+
+}
+
+nav a {
+  margin: 1em;
+}
+
+/* ===============================
+MAIN
+=============================== */
+
+.galery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+  flex-wrap: wrap;
+
+  padding: 1em;
+}
+
+.galery img {
+  width: 50%;
+  flex-basis: 45%;
+
+  border: 0.2em solid var(--color-indigo);
+
+  border-radius: 1em;
+}
+
