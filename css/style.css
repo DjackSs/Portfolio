@@ -105,14 +105,33 @@ canvas {
 /* ===============================
 HEADER
 =============================== */
+header {
+  position: relative;
+}
+
+header >  canvas {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  z-index: -1;
+
+
+  /* filter: blur(10px) contrast(40); */
+}
 
 nav {
   font-size: 1.1em;
 
 }
 
-nav a {
-  margin: 1em;
+nav > ul {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  padding: 0;
+
+  list-style-type: none;
+
 }
 
 /* ===============================
@@ -135,7 +154,7 @@ MAIN
 
   border: 0.2em solid var(--color-indigo);
 
-  border-radius: 1em;
+  /* border-radius: 1em; */
 }
 
 /* ======================Accordeon */
@@ -217,4 +236,5 @@ MAIN
 .button-active {
   min-height: 50em;
 }
+
 
