@@ -105,18 +105,22 @@ canvas {
 /* ===============================
 HEADER
 =============================== */
-header {
+#heading {
   position: relative;
+  text-align: center;
+
+  min-height: 60em;
+
 }
 
-header >  canvas {
-  margin: 0;
-  padding: 0;
+
+header canvas {
   position: absolute;
   z-index: -1;
+}
 
-
-  /* filter: blur(10px) contrast(40); */
+header div[class="container"] {
+  padding: 5em 0;
 }
 
 nav {
@@ -127,16 +131,52 @@ nav {
 nav > ul {
   display: flex;
   align-items: center;
-  gap: 2em;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3em;
   padding: 0;
 
   list-style-type: none;
 
 }
 
+nav ul li a {
+  font-size: 1.3em;
+}
+
 /* ===============================
 MAIN
 =============================== */
+
+#me {
+  background-color: var(--color-indigo);
+}
+
+#me article {
+  padding: 2em;
+}
+
+
+.projet {
+  margin: 5em 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+
+#project article:nth-child(odd) {
+  flex-direction: row-reverse;
+}
+
+.projet * {
+  flex-basis: 45%;
+}
+
+.projet img {
+  width: 50%;
+}
 
 .galery {
   display: flex;

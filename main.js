@@ -21,13 +21,15 @@ for(let button of accordeonButtons)
        
         button.classList.toggle("button-active");
 
+        // for map 1 and 3, opening_video and opened_video are loaded once their buttons have been clicked
         if(!video.src && button.id != 2)
         {
-
+            // switch the idle video with opening video
             video.src = `./video/map${button.id}_opening.mp4`;
             video.loop = false;
             video.muted = false;
 
+            // scwitch the poster image after 1s
             setTimeout(()=>
             {
                 video.poster = `./image/map${button.id}_open_idle_frame.png`;
@@ -35,7 +37,7 @@ for(let button of accordeonButtons)
             }, 1000);
             
             
-
+            // when the opening video is finished, switch with the open_idle video
             video.addEventListener("ended", ()=>
             {
                 video.src = `./video/map${button.id}_open_idle.mp4`;
@@ -56,42 +58,64 @@ for(let button of accordeonButtons)
 // CANVAS HEADER
 // ============================================
 
-const header = document.querySelector("header");
+// this script is inspired from https://www.youtube.com/@Frankslaboratory GREAT STUFF !
 
+
+
+// -------------set up the canvas with the header's width and height
+
+const header = document.querySelector("#heading");
 
 const canvas = document.querySelector("canvas");
 
-const ctx = canvas.getContext("2d");
 
-const canvasWidth = header.getBoundingClientRect().width;
-
+let canvasWidth = header.getBoundingClientRect().width;
 canvas.width = canvasWidth;
 
-const canvasHeight = header.getBoundingClientRect().height;
+console.log(canvasWidth);
 
+let canvasHeight = header.getBoundingClientRect().height;
 canvas.height = canvasHeight;
 
+const ctx = canvas.getContext("2d");
 
-
-ctx.fillStyle = "#242424";
+ctx.fillStyle = "rgba(36, 36, 36, 1)";
 ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+ctx.fillStyle = "white";
+
+// -------------get the mouse position
+
+const mouse =
+ {
+    x: 0,
+    y: 0
+ };
 
 
-ctx.fillStyle = "#646cff";
+window.addEventListener("mousemove", (e)=>
+{
+    mouse.x = e.x;
+    mouse.y = e.y;
+});
 
 
-class ball
+let theta = 0;
+
+// -------------set up the classes
+
+class eyeball
 {
     constructor (effect)
     {
         this.effect = effect;
-        this.radius = Math.random()* 80 + 50;
+        this.radius = Math.random()* 30 + 50;
         this.x = Math.random() * this.effect.width;
         this.y = this.effect.height+this.radius;
         this.speedX = Math.random() - 0.5;
         this.speedY = Math.random() * -0.5;
         
     }
+
     update ()
     {
         if(this.x - this.radius <= 0 || this.x + this.radius >= this.effect.width)
@@ -110,22 +134,63 @@ class ball
 
     draw (context)
     {
+        // ------eyeball
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, Math.PI*2);
+        context.fillStyle = "rgba(100, 108, 255, 1)";
         context.fill();
+
+
+        // ------get angle
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+
+        theta = Math.atan2(dy, dx);
+
+
+        // ------iris
+        let iris_x = this.x + Math.cos(theta) * this.radius/10;
+        let iris_y = this.y + Math.sin(theta) * this.radius/10;
+
+        let irisRadius = this.radius /1.2;
+
+        context.beginPath();
+        context.arc(iris_x, iris_y, irisRadius, 0, Math.PI*2);
+        context.fillStyle = "white";
+        context.fill();
+
+        // ------pupil
+        let pupil_x = this.x + Math.cos(theta) * this.radius/1.9;
+        let pupil_y = this.y + Math.sin(theta) * this.radius/1.9;
+
+        let pupilRadius = this.radius /2.5;
+
+        context.beginPath();
+        context.arc(pupil_x, pupil_y, pupilRadius, 0, Math.PI*2);
+        context.fillStyle = "rgba(36, 36, 36, 1)";
+        context.fill();
+
+        // ------reflection
+        context.beginPath();
+        context.arc(pupil_x-pupilRadius/3, pupil_y-pupilRadius/3, pupilRadius/2, 0, Math.PI*2);
+        context.fillStyle = "rgba(255,255,255,0.1";
+        context.fill();
+
+
+
     }
 
    
 }
 
 
-class MetaballsEffect
+class eyeballEffect
 {
     constructor (width, height)
     {
         this.width = width;
         this.height = height;
-        this.metaballsArray= [];
+        this.eyeballs= [];
 
     }
 
@@ -133,45 +198,76 @@ class MetaballsEffect
     {
         for(let i=0 ; i< numberOfBalles; i++)
         {
-            this.metaballsArray.push(new ball(this));
+            this.eyeballs.push(new eyeball(this));
         }
     }
 
     update ()
     {
-        this.metaballsArray.forEach(metaball => metaball.update());
+        for(let eye of this.eyeballs)
+        {
+            eye.update();
+        }
+
+        // this.balls.forEach(ball => metaball.update());
 
     }
 
     draw (context)
     {
-        this.metaballsArray.forEach(metaball => metaball.draw(context));
+        for(let eye of this.eyeballs)
+        {
+            eye.draw(context);
+        }
+
+        // this.balls.forEach(ball => ball.draw(context));
         
     }
 }
 
 
+// -------------script initialisation
+let eyeballAnimation = new eyeballEffect(canvasWidth, canvasHeight);
+eyeballAnimation.init(50);
 
-const test = new MetaballsEffect(canvasWidth, canvasHeight);
-test.init(20);
+let frame = 0;
+
+animate();
 
 
+// -------------reset the script when resizing
+window.addEventListener("resize", ()=>
+{
+    window.cancelAnimationFrame(frame);
+
+    canvasWidth = header.getBoundingClientRect().width;
+    canvas.width = canvasWidth;
+
+    canvasHeight = header.getBoundingClientRect().height;
+    canvas.height = canvasHeight;
+
+    eyeballAnimation = new eyeballEffect(canvasWidth, canvasHeight);
+    eyeballAnimation.init(50);
+
+    animate();
+
+
+
+
+})
 
 function animate ()
 {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
-    ctx.fillStyle = "#242424";
+    ctx.fillStyle = "rgba(36, 36, 36, 1)";
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-    ctx.fillStyle = "#646cff";
+    ctx.fillStyle = "white";
     
-    test.update();
-    test.draw(ctx);
+    eyeballAnimation.update();
+    eyeballAnimation.draw(ctx);
 
-    requestAnimationFrame(animate);
+    frame = requestAnimationFrame(animate);
 }
-
-animate();
-
 
