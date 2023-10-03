@@ -66,6 +66,10 @@ h2 {
   font-size: 2.5em;
 }
 
+h3 {
+  color: var(--color-indigo);
+}
+
 
 a {
   font-weight: 500;
@@ -105,6 +109,7 @@ canvas {
 /* ===============================
 HEADER
 =============================== */
+
 #heading {
   position: relative;
   text-align: center;
@@ -157,7 +162,7 @@ MAIN
 }
 
 
-.projet {
+.project {
   margin: 5em 0;
   display: flex;
   align-items: center;
@@ -170,32 +175,47 @@ MAIN
   flex-direction: row-reverse;
 }
 
-.projet * {
+.project * {
   flex-basis: 45%;
 }
 
-.projet img {
+.project img {
   width: 50%;
 }
 
-.galery {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2em;
-  flex-wrap: wrap;
-
-  padding: 1em;
+.project img:hover {
+  outline: 0.2em solid var(--color-indigo);
+  cursor: pointer;
 }
 
-.galery img {
-  width: 50%;
-  flex-basis: 45%;
 
+.modal {
+  width: 80%;
+  height: 80%;
+  padding:0;
+  
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  
   border: 0.2em solid var(--color-indigo);
-
-  /* border-radius: 1em; */
 }
+
+.modalButtonR {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+
+}
+
+.modalButtonL {
+  position: absolute;
+  left: 5%;
+  top: 50%;
+
+}
+
+
 
 /* ======================Accordeon */
 

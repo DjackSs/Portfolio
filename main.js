@@ -2,6 +2,97 @@
 import "./css/normelize.css";
 import './css/style.css';
 
+// ============================================
+// MODAL
+// ============================================
+
+const modal = document.querySelector("#modal");
+
+const projectImgs = document.querySelectorAll(".project img");
+
+for(let image of projectImgs)
+{
+    image.addEventListener("click", ()=>
+    {
+        // -------------this part open the modal
+        let src = image.src;
+
+        console.log(src);
+
+        modal.style.backgroundImage = `url("${src}")`;
+
+        modal.showModal();
+
+        let count = 1;
+
+        // -------------if user click on button, image.src switch, if user click anywhere else then modal.close
+        modal.addEventListener("click", (e)=>
+        {
+
+            if(e.target.classList.contains("modal"))
+            {
+                modal.close();
+            }
+
+            if(e.target.classList.contains("modalButtonL"))
+            {
+                if(count > 1)
+                {
+                    src = src.replace(`${count}.png`,`${count-1}.png`);
+                    console.log(src);
+
+                    modal.style.backgroundImage = `url("${src}")`;
+
+                    count--;
+
+                }
+                else
+                {
+                    src = src.replace(`${count}.png`,`${count+3}.png`);
+                    console.log(src);
+
+                    modal.style.backgroundImage = `url("${src}")`;
+
+                    count = 4;
+
+                }
+
+            }
+
+            if(e.target.classList.contains("modalButtonR"))
+            {
+                if(count < 4)
+                {
+                    src = src.replace(`${count}.png`,`${count+1}.png`);
+                    console.log(src);
+
+                    modal.style.backgroundImage = `url("${src}")`;
+
+                    count++;
+
+                }
+                else
+                {
+                    src = src.replace(`${count}.png`,`${count-3}.png`);
+                    console.log(src);
+
+                    modal.style.backgroundImage = `url("${src}")`;
+
+                    count = 1;
+
+                }
+
+            }
+            
+            
+            
+        });
+
+       
+      
+    });
+}
+
 
 // ============================================
 // ACCORDEON MENU
@@ -62,7 +153,7 @@ for(let button of accordeonButtons)
 
 
 
-// -------------set up the canvas with the header's width and height
+// -------------set up the canvas with the div's width and height
 
 const header = document.querySelector("#heading");
 
@@ -71,8 +162,6 @@ const canvas = document.querySelector("canvas");
 
 let canvasWidth = header.getBoundingClientRect().width;
 canvas.width = canvasWidth;
-
-console.log(canvasWidth);
 
 let canvasHeight = header.getBoundingClientRect().height;
 canvas.height = canvasHeight;
@@ -256,6 +345,8 @@ window.addEventListener("resize", ()=>
 
 })
 
+
+// -------------animation loop
 function animate ()
 {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
