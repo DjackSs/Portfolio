@@ -39,7 +39,6 @@ for(let image of projectImgs)
                 if(count > 1)
                 {
                     src = src.replace(`${count}.png`,`${count-1}.png`);
-                    console.log(src);
 
                     modal.style.backgroundImage = `url("${src}")`;
 
@@ -49,7 +48,6 @@ for(let image of projectImgs)
                 else
                 {
                     src = src.replace(`${count}.png`,`${count+3}.png`);
-                    console.log(src);
 
                     modal.style.backgroundImage = `url("${src}")`;
 
@@ -64,7 +62,6 @@ for(let image of projectImgs)
                 if(count < 4)
                 {
                     src = src.replace(`${count}.png`,`${count+1}.png`);
-                    console.log(src);
 
                     modal.style.backgroundImage = `url("${src}")`;
 
@@ -74,7 +71,6 @@ for(let image of projectImgs)
                 else
                 {
                     src = src.replace(`${count}.png`,`${count-3}.png`);
-                    console.log(src);
 
                     modal.style.backgroundImage = `url("${src}")`;
 
@@ -155,22 +151,16 @@ for(let button of accordeonButtons)
 
 // -------------set up the canvas with the div's width and height
 
-const header = document.querySelector("#heading");
+let header_div = document.querySelector("#heading").getBoundingClientRect();
 
 const canvas = document.querySelector("canvas");
 
-
-let canvasWidth = header.getBoundingClientRect().width;
-canvas.width = canvasWidth;
-
-let canvasHeight = header.getBoundingClientRect().height;
-canvas.height = canvasHeight;
+canvas.width = header_div.width;
+canvas.height = header_div.height;
 
 const ctx = canvas.getContext("2d");
 
-ctx.fillStyle = "rgba(36, 36, 36, 1)";
-ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-ctx.fillStyle = "white";
+
 
 // -------------get the mouse position
 
@@ -190,6 +180,15 @@ window.addEventListener("mousemove", (e)=>
 
 let theta = 0;
 
+// -------------get the title metric for a bouncing effect
+let title = document.querySelector("h1").getBoundingClientRect();
+
+ctx.fillStyle = "rgba(36, 36, 36, 1)";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.fillStyle = "white";
+
+
+
 // -------------set up the classes
 
 class eyeball
@@ -197,11 +196,12 @@ class eyeball
     constructor (effect)
     {
         this.effect = effect;
-        this.radius = Math.random()* 30 + 50;
+        this.radius = Math.random()* 30 + 60;
         this.x = Math.random() * this.effect.width;
-        this.y = this.effect.height+this.radius;
+        this.y = this.effect.height + this.radius;
         this.speedX = Math.random() - 0.5;
         this.speedY = Math.random() * -0.5;
+        this.bouncable = false;
         
     }
 
@@ -212,9 +212,28 @@ class eyeball
             this.speedX *= -1;
         }
 
+        // -------------if eyeballs leaves canvas from top, then create another
         if(this.y  <= 0 - this.radius)
         {
             this.y = this.effect.height + this.radius;
+        }
+
+        // -------------eyeballs that hase once bounce on title, can bounce with canvas bottom
+        if(this.y + this.radius >= this.effect.height && this.bouncable)
+        {
+            this.speedY *= -1;
+        }
+
+        // -------------if eyeballs collided with the title, then bounce
+        if((this.y + this.radius >= title.y) && (this.y - this.radius <= title.y + title.height))
+        {
+            if((this.x + this.radius >= title.x) && (this.x - this.radius <= title.x + title.width))
+            {
+                this.speedX *= -1;
+                this.speedY *= -1;
+                this.bouncable = true;
+            }
+            
         }
 
         this.x += this.speedX;
@@ -316,7 +335,7 @@ class eyeballEffect
 
 
 // -------------script initialisation
-let eyeballAnimation = new eyeballEffect(canvasWidth, canvasHeight);
+let eyeballAnimation = new eyeballEffect(canvas.width, canvas.height);
 eyeballAnimation.init(50);
 
 let frame = 0;
@@ -329,13 +348,16 @@ window.addEventListener("resize", ()=>
 {
     window.cancelAnimationFrame(frame);
 
-    canvasWidth = header.getBoundingClientRect().width;
-    canvas.width = canvasWidth;
+    header_div = document.querySelector("#heading").getBoundingClientRect();
 
-    canvasHeight = header.getBoundingClientRect().height;
-    canvas.height = canvasHeight;
+    canvas.width = header_div.width;
 
-    eyeballAnimation = new eyeballEffect(canvasWidth, canvasHeight);
+    canvas.height = header_div.height;
+
+
+    title = document.querySelector("h1").getBoundingClientRect();
+
+    eyeballAnimation = new eyeballEffect(canvas.width, canvas.height);
     eyeballAnimation.init(50);
 
     animate();
@@ -349,10 +371,10 @@ window.addEventListener("resize", ()=>
 // -------------animation loop
 function animate ()
 {
-    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = "rgba(36, 36, 36, 1)";
-    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = "white";
     

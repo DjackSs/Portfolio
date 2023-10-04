@@ -42,6 +42,8 @@ body {
   
   box-sizing: border-box;
 
+  transform-style: preserve-3d;
+
 
 }
 
@@ -114,7 +116,18 @@ HEADER
   position: relative;
   text-align: center;
 
-  min-height: 60em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 80vh;
+
+}
+
+#heading h1 {
+  font-size: 5em;
+  padding: 0;
+  margin: 0;
 
 }
 
@@ -122,6 +135,9 @@ HEADER
 header canvas {
   position: absolute;
   z-index: -1;
+
+  transform: translateZ(20em);
+
 }
 
 header div[class="container"] {
@@ -199,6 +215,12 @@ MAIN
   background-size: contain;
   
   border: 0.2em solid var(--color-indigo);
+}
+
+.modal > button {
+  border: none;
+  background-color: rgba(83, 91, 242, 0.5);
+
 }
 
 .modalButtonR {
@@ -297,4 +319,29 @@ MAIN
   min-height: 50em;
 }
 
+
+/* ===============================
+FOOTER
+=============================== */
+
+.contact_flex {
+  display:flex;
+  align-items:center;
+  justify-content: flex-start;
+  gap: 5em;
+
+  padding: 3em 0;
+
+}
+
+.contact_flex a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.contact_flex a svg {
+  min-height: 4em;
+}
 
