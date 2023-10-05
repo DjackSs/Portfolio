@@ -2,6 +2,37 @@
 import "./css/normelize.css";
 import './css/style.css';
 
+
+// ============================================
+// LIGHT MODE
+// ============================================
+
+const lightButton = document.querySelector(".light");
+
+// -------------get the theme
+const theme = localStorage.getItem("theme");
+
+// -------------apply the theme if there is
+theme && document.body.classList.add(theme);
+
+
+// -------------switch theme and store if needed
+lightButton.addEventListener("click",()=>
+{
+    document.body.classList.toggle("light");
+
+    if(document.body.classList.contains("light"))
+    {
+        localStorage.setItem("theme", "light");
+    }
+    else
+    {
+        localStorage.removeItem("theme");
+    }
+
+})
+
+
 // ============================================
 // MODAL
 // ============================================
@@ -148,9 +179,7 @@ for(let button of accordeonButtons)
 // this script is inspired from https://www.youtube.com/@Frankslaboratory GREAT STUFF !
 
 
-
 // -------------set up the canvas with the div's width and height
-
 let header_div = document.querySelector("#heading").getBoundingClientRect();
 
 const canvas = document.querySelector("canvas");
@@ -180,12 +209,19 @@ window.addEventListener("mousemove", (e)=>
 
 let theta = 0;
 
-// -------------get the title metric for a bouncing effect
+
+// -------------get the title metric for a bouncing effect, gotta add window.scrollY to get the fixed position y on the page
 let title = document.querySelector("h1").getBoundingClientRect();
+title.y += window.scrollY;
+
+
 
 ctx.fillStyle = "rgba(36, 36, 36, 1)";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.fillStyle = "white";
+
+
+
 
 
 
@@ -224,10 +260,10 @@ class eyeball
             this.speedY *= -1;
         }
 
-        // -------------if eyeballs collided with the title, then bounce
-        if((this.y + this.radius >= title.y) && (this.y - this.radius <= title.y + title.height))
+        // -------------if eyeballs collided with the title, then bounce = define title hitbox
+        if((this.y + this.radius > this.effect.obstacle.y) && (this.y - this.radius < this.effect.obstacle.y + this.effect.obstacle.height-10))
         {
-            if((this.x + this.radius >= title.x) && (this.x - this.radius <= title.x + title.width))
+            if((this.x + this.radius > this.effect.obstacle.x) && (this.x - this.radius < this.effect.obstacle.x + this.effect.obstacle.width-10))
             {
                 this.speedX *= -1;
                 this.speedY *= -1;
@@ -235,6 +271,7 @@ class eyeball
             }
             
         }
+
 
         this.x += this.speedX;
         this.y += this.speedY;
@@ -294,10 +331,11 @@ class eyeball
 
 class eyeballEffect
 {
-    constructor (width, height)
+    constructor (width, height, obstacle)
     {
         this.width = width;
         this.height = height;
+        this.obstacle = obstacle;
         this.eyeballs= [];
 
     }
@@ -334,13 +372,17 @@ class eyeballEffect
 }
 
 
-// -------------script initialisation
-let eyeballAnimation = new eyeballEffect(canvas.width, canvas.height);
+
+
+// -------------script initialisation. The effect take place within the canvas and the title(h1) is passed as an obstacle for bouncing
+let eyeballAnimation = new eyeballEffect(canvas.width, canvas.height, title);
 eyeballAnimation.init(50);
 
 let frame = 0;
 
 animate();
+
+
 
 
 // -------------reset the script when resizing
@@ -351,13 +393,12 @@ window.addEventListener("resize", ()=>
     header_div = document.querySelector("#heading").getBoundingClientRect();
 
     canvas.width = header_div.width;
-
     canvas.height = header_div.height;
 
 
     title = document.querySelector("h1").getBoundingClientRect();
 
-    eyeballAnimation = new eyeballEffect(canvas.width, canvas.height);
+    eyeballAnimation = new eyeballEffect(canvas.width, canvas.height, title);
     eyeballAnimation.init(50);
 
     animate();
@@ -371,16 +412,21 @@ window.addEventListener("resize", ()=>
 // -------------animation loop
 function animate ()
 {
+
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = "rgba(36, 36, 36, 1)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = "white";
+
     
     eyeballAnimation.update();
     eyeballAnimation.draw(ctx);
 
+
     frame = requestAnimationFrame(animate);
 }
+
 
