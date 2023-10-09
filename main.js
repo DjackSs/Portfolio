@@ -48,8 +48,6 @@ for(let image of projectImgs)
         // -------------this part open the modal
         let src = image.src;
 
-        console.log(src);
-
         modal.style.backgroundImage = `url("${src}")`;
 
         modal.showModal();
@@ -397,6 +395,7 @@ window.addEventListener("resize", ()=>
 
 
     title = document.querySelector("h1").getBoundingClientRect();
+    title.y += window.scrollY;
 
     eyeballAnimation = new eyeballEffect(canvas.width, canvas.height, title);
     eyeballAnimation.init(50);

@@ -112,6 +112,10 @@ button:focus-visible {
   outline: 0.2em auto -webkit-focus-ring-color;
 }
 
+ul {
+  color: var(--color-indigo);
+}
+
 canvas {
   display: block;
 }
@@ -202,17 +206,21 @@ nav ul li a {
 MAIN
 =============================== */
 
-#me {
+/* ======================Profile */
+
+#profile {
   background-color: var(--color-indigo);
 }
 
-#me article {
+#profile article {
   padding: 2em;
 }
 
-#me article p {
+#profile article p {
   width: 50%;
 }
+
+/* ======================Projet */
 
 
 .project {
@@ -243,9 +251,6 @@ MAIN
   margin: 2em 0;
 }
 
-.project div ul > li{
-  color: var(--color-indigo);
-}
 
 .project img {
   width: 50%;
@@ -289,7 +294,11 @@ MAIN
 
 }
 
+/* ======================Level designe */
 
+#level_design > article div {
+  width: 70%;
+}
 
 /* ======================Accordeon */
 
@@ -333,8 +342,6 @@ MAIN
   
 }
 
-
-
 .button-accordeon > video {
   position: absolute;
   inset: 0;
@@ -362,6 +369,7 @@ MAIN
 
 }
 
+
 .active {
   position:initial;
   opacity: 1;
@@ -371,6 +379,28 @@ MAIN
 
 .button-active {
   min-height: 50em;
+}
+
+
+.content {
+  width: 50%;
+  margin: auto;
+  padding: 2em 0;
+}
+
+.galery {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 2em;
+
+}
+
+.galery img {
+  width: 50%;
+  flex-basis: 30%;
 }
 
 
