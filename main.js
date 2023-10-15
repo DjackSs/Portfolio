@@ -33,6 +33,7 @@ lightButton.addEventListener("click",()=>
 })
 
 
+
 // ============================================
 // MODAL
 // ============================================
@@ -239,6 +240,7 @@ class eyeball
         
     }
 
+    // ------detect collisions and set up dierection
     update ()
     {
         if(this.x - this.radius <= 0 || this.x + this.radius >= this.effect.width)
@@ -275,12 +277,13 @@ class eyeball
         this.y += this.speedY;
     }
 
+    // ------contain the canva's methodes to draw the eyes
     draw (context)
     {
         // ------eyeball
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, Math.PI*2);
-        context.fillStyle = "rgba(100, 108, 255, 1)";
+        context.fillStyle = "rgba(67, 56, 202, 1)";
         context.fill();
 
 
@@ -338,6 +341,7 @@ class eyeballEffect
 
     }
 
+    // ------creat the desire eyeballs number
     init (numberOfBalles)
     {
         for(let i=0 ; i< numberOfBalles; i++)
@@ -346,6 +350,7 @@ class eyeballEffect
         }
     }
 
+    
     update ()
     {
         for(let eye of this.eyeballs)
@@ -357,6 +362,7 @@ class eyeballEffect
 
     }
 
+   
     draw (context)
     {
         for(let eye of this.eyeballs)

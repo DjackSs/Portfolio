@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
 
@@ -26,21 +26,35 @@
       <div class="container">
 
         <nav>
-          <ul>
-            <li>
-              <button class="light">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-                  </svg>   
-              </button>  
-            </li>
-          </ul>
+          
 
           <ul>
             <li><a href="#profile">Profil</a></li>
             <li><a href="#project">Projets</a></li>
             <li><a href="#level_design">Level Design</a></li>
             <li><a href="#contact">Contact</a></li>
+
+            <li>
+
+              <button class="light">
+
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                  </svg>
+                     
+              </button>  
+
+              
+
+            </li>
+
+            <!-- <li>
+              <button class="lang_switcher">
+                Fr / En
+              </button>
+            </li> -->
+
+
           </ul>
           
         </nav> 
@@ -53,15 +67,15 @@
 
       <section id="profile" >
 
-        <article class="container">
+        <article lang="fr" class="container">
 
-          <h2>Salut !</h2>
+          <h2>Bienvenue !</h2>
 
-          <p>
+          <p >
             Je m'appel Nathan, après avoir étudié et travaillé dans le domaine de la biologie, J'ai commencé à me former dans le developpement.
           </p>
           <p>
-            Toujours en quête de nouvelles choses à apprendre, J'aime dans l'informatique l'alliance de l'ésprit créatif et ingénieux.
+            Toujours en quête de nouvelles choses à apprendre, J'aime dans la programation l'alliance de l'ésprit créatif et ingénieux.
           </p>
 
         </article>
@@ -74,7 +88,7 @@
 
         <h2>Projet</h2>
 
-        <article class="project">
+        <article  class="project">
 
           <div>
 
@@ -186,7 +200,7 @@
                 <button id="1" class="button-accordeon">
 
                     <span>
-                      <h3 class="container">Map jeopardized</h3>
+                      <h3 class="container">Jeopardized</h3>
                     </span>
 
                     <video loading="lazy" autoplay muted="true" loop="true" poster="./image/map1_opening_frame.png">
@@ -202,13 +216,21 @@
 
                   <div class="content">
 
-                    <h3>Map 1</h3>
+                    <h3>Map 1 : Jeopardized</h3>
 
-                    <p>Il s'agit de ma première carte réalisée, Le premier projet est souvent voué à l'échec car en plus d'apprendre à utiliser l'éditeur, on apprend égallement le level design. Souvent trop ambicieux, trop compliqué, géométrie mal maitrisé, travail de texture trop chargé, difficultée mal dosée... On tombe dans tous ces travers lorsque l'on débute et je n'y ai pas fais exeption. Mais heureusement on s'améliore, grâce aux conseil de la communauté, le meilleur moyen de prendre conscience des défauts de sa carte est de la faire tester et de requeillir un maximum de feedback ! </p>
+                    <p>
+                      Il s'agit de ma première carte réalisée, Le premier projet est souvent voué à l'échec car en plus d'apprendre à utiliser l'éditeur, on apprend égallement le level design. Souvent trop ambicieux, trop compliqué, géométrie mal maitrisé, travail de texture trop chargé, difficultée mal dosée... On tombe dans tous ces travers lorsque l'on débute et je n'y ai pas fais exeption. Mais heureusement on s'améliore, grâce aux conseil de la communauté, le meilleur moyen de prendre conscience des défauts de sa carte est de la faire tester et de requeillir un maximum de feedback ! 
+                    </p>
+
+                    <p>
+                      Depuis sa publication initiale, cette carte à été joué et notée par plusieurs miliers de joueurs.
+                    </p>
+
+                    <img src="./image/map1_thumb.jpg" >
 
                   </div>
           
-                  <div class="galery">
+                  <div class="gallery">
 
                       <img loading="lazy" src="./image/map1/map1_1.jpg" alt="">
                       <img loading="lazy" src="./image/map1/map1_2.jpg" alt="">
@@ -223,46 +245,13 @@
 
         </div>
 
-        <!-- <div class="accordeon-panel">
-
-          <button id="2" class="button-accordeon">
-
-              <span>
-                <h3 class="container">Map 2 : Steel Madnesse</h3>
-              </span>
-
-              <video autoplay muted="true" loop="true" poster="./image/map2_idle_frame.png">
-
-                <source src="./video/map2_idle.mp4" type="video/mp4">
-                Your browser does not support the video tag
-
-             </video>
-
-          </button>
-          <article class="accordeon-content container" >
-
-            <h3>Map 2</h3>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto voluptas earum nulla cupiditate amet quasi animi asperiores doloremque nobis eligendi quis, iusto perferendis explicabo eius. Laudantium voluptatibus excepturi ipsa. Ipsum error dolor perspiciatis omnis totam, praesentium velit ab, magnam dolore illum explicabo consequuntur temporibus ratione aut, ex autem veniam placeat!
-            </p>
-    
-            <div class="galery">
-                <img src="" alt="">
-                <img src="" alt="">
-                <img src="" alt="">
-                <img src="" alt="">
-            </div>
-    
-          </article>
-
-          </div> -->
 
         <div class="accordeon-panel">
 
           <button id="3" class="button-accordeon">
 
               <span>
-                <h3 class="container">Map The Journey</h3>
+                <h3 class="container">The Journey</h3>
               </span>
 
               <video autoplay muted="true" loop="true" poster="./image/map3_opening_frame.png">
@@ -277,14 +266,21 @@
 
             <div class="content">
 
-              <h3>Map 3</h3>
+              <h3>Map 3 : The Journey</h3>
+
               <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto voluptas earum nulla cupiditate amet quasi animi asperiores doloremque nobis eligendi quis, iusto perferendis explicabo eius. Laudantium voluptatibus excepturi ipsa. Ipsum error dolor perspiciatis omnis totam, praesentium velit ab, magnam dolore illum explicabo consequuntur temporibus ratione aut, ex autem veniam placeat!
+                Dérnière carte publiée, réalisée à l'occasion d'un concourt caummunautaire organisé à la sortie du jeu. J'ai voulus réalisée une synthèse de ce que j'ai aimé dans le jeu pour fair voyager le joueur. Les environement et les scriptes sont pensés pour favoriser l'immersion et le story-telling. En plus de mettre en pratique tous ce que j'ai appris, j'ai apporté une petite dimention scénaristique qui manquais jusqu'à présent dans mes cartes. 
               </p>
+
+              <p>
+                Cette carte à remportée la <a href="https://www.youtube.com/watch?v=zWM9-V0HSms" target="_blank" > 3ème place du concourt Mapcore X3 Prodeus Mapping Contest</a>, organisé en septembre 2022. 
+              </p>
+
+              <img src="./image/map3_thumb.jpg" >
 
             </div>
 
-            <div class="galery">
+            <div class="gallery">
                 <img loading="lazy" src="./image/map3/map3_1.jpg" alt="">
                 <img loading="lazy" src="./image/map3/map3_2.jpg" alt="">
                 <img loading="lazy" src="./image/map3/map3_3.jpg" alt="">
@@ -301,6 +297,7 @@
       </section>
 
     </main>
+    
     <footer class="container" id="contact">
 
         <div class="contact_flex">

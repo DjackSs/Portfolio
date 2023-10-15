@@ -5,11 +5,25 @@
   --main-font: 'Satoshi', sans-serif;
   --title-font: 'Panchang', sans-serif;
 
-  --color-white: rgba(255, 255, 255, 0.87);
-  --color-black: rgba(36, 36, 36, 1); /*#242424*/
+  --color-white: rgba(194, 194, 194, 0.87);
+  --color-black: rgba(36, 36, 36, 1); 
+  /*#C2C2C2*/
 
-  --color-indigo: rgba(100, 108, 255, 1); /*#646cff*/
-  --color-indigo-light: rgba(83, 91, 242, 1); /*#535bf2*/
+  --color-indigo: rgba(67, 56, 202, 1); 
+  /*#4338ca*/
+  --color-indigo-light: rgba(83, 91, 242, 1); 
+  /*#535bf2*/
+
+
+  --color-grey: #808F87;
+  --color-orange: #DB7C26;
+
+
+
+  --box-shadow : rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+
+
 
 
   scroll-behavior: smooth;
@@ -59,6 +73,7 @@ body {
   margin: auto;
   max-width: 1500px;
   padding: 1em;
+
 }
 
 h1,
@@ -121,6 +136,11 @@ canvas {
 }
 
 
+
+
+
+
+
 /* ===============================
 HEADER
 =============================== */
@@ -130,10 +150,11 @@ HEADER
   text-align: center;
 
   display: flex;
-  align-items: center;
+
+  align-items: flex-start;
   justify-content: center;
 
-  min-height: 80vh;
+  min-height: 85vh;
 
 }
 
@@ -160,10 +181,6 @@ header div[class="container"] {
 }
 
 nav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: 1em;
   font-size: 1.1em;
 
@@ -171,6 +188,7 @@ nav {
 
 nav > ul {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
@@ -192,15 +210,61 @@ nav > ul {
 
 }
 
+
 nav ul li svg {
-  width: 2em;
+  width: 1.5em;
   stroke: var(--color-indigo);
   fill: transparent;
+}
+
+nav ul li svg:hover {
+  stroke: var(--color-indigo-light);
 }
 
 nav ul li a {
   font-size: 1.3em;
 }
+
+
+.lang_switcher {
+  padding: 0;
+  font-weight: 500;
+  color: var(--color-indigo);
+
+  background-color: transparent;
+  border: none;
+}
+
+.lang_switcher:hover {
+  color: var(--color-indigo-light);
+
+  background-color: transparent;
+  /* border: none; */
+}
+
+
+/* ======================Header responsive  */
+
+@media screen and (min-width: 650px) {
+
+  nav > ul {
+    flex-direction: row;
+  
+  }
+
+
+}
+
+@media screen and (min-width: 1000px) {
+
+  #heading {
+    align-items: center;
+   
+  }
+
+  
+}
+
 
 /* ===============================
 MAIN
@@ -214,10 +278,31 @@ MAIN
 
 #profile article {
   padding: 2em;
+  text-align: center;
+
+  color: rgba(194, 194, 194, 0.87);
+
 }
 
 #profile article p {
-  width: 50%;
+  width: 100%;
+}
+
+/* ======================Profile responsive */
+
+@media screen and (min-width: 650px) {
+
+  #profile article {
+    text-align: left;
+  }
+
+  #profile article p {
+    width: 50%;
+  }
+
+  
+
+
 }
 
 /* ======================Projet */
@@ -226,15 +311,13 @@ MAIN
 .project {
   margin: 5em 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   gap: 2em;
   flex-wrap: wrap;
 }
 
-#project article:nth-child(odd) {
-  flex-direction: row-reverse;
-}
 
 .project > * {
   flex-basis: 45%;
@@ -242,6 +325,7 @@ MAIN
 
 .project div ul {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
@@ -251,10 +335,13 @@ MAIN
   margin: 2em 0;
 }
 
-
 .project img {
-  width: 50%;
+  width: 100%;
+
+  box-shadow: var(--box-shadow);
 }
+
+
 
 .project img:hover {
   outline: 0.2em solid var(--color-indigo);
@@ -270,6 +357,8 @@ MAIN
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+
+  background-color: var(--color-black);
   
   border: 0.2em solid var(--color-indigo);
 }
@@ -294,6 +383,41 @@ MAIN
 
 }
 
+
+/* ======================Project responsive  */
+
+@media screen and (min-width: 450px) {
+
+  .project div ul {
+    flex-direction: row;
+  }
+
+  
+
+
+}
+
+@media screen and (min-width: 1200px) {
+
+    .project {
+      flex-direction: row;
+    }
+
+    #project article:nth-child(odd) {
+      flex-direction: row-reverse;
+    }
+    
+
+    .project img {
+      width: 50%;
+    }
+
+
+  }
+  
+
+
+
 /* ======================Level designe */
 
 #level_design > article div {
@@ -311,6 +435,8 @@ MAIN
 
 .accordeon-panel {
   padding: 0.1em 0;
+
+  box-shadow: var(--box-shadow);
 }
 
 .button-accordeon {
@@ -337,7 +463,7 @@ MAIN
   padding: 1em 2em;
 
 
-  color: var(--color-white);
+  color: rgba(194, 194, 194, 0.87);
   
   
 }
@@ -358,6 +484,8 @@ MAIN
 .accordeon-panel {
   position: relative;
 
+  overflow: hidden;
+
   
 }
 
@@ -370,11 +498,23 @@ MAIN
 }
 
 
+
 .active {
   position:initial;
   opacity: 1;
 
+  transform: translateY(0);
+    
+  animation: slideIn 0.5s;
+}
 
+@keyframes slideIn {
+  0% {
+      transform: translateY(-200px);
+  }
+  100% {
+      transform: translateY(0);
+  }
 }
 
 .button-active {
@@ -383,26 +523,90 @@ MAIN
 
 
 .content {
-  width: 50%;
+  width: 90%;
   margin: auto;
   padding: 2em 0;
 }
 
-.galery {
+.content img {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  gap: 2em;
+
+  box-shadow: var(--box-shadow);
+}
+
+
+.gallery {
+  --s: 5em; /* control the size */
+  --g: 0.5em;  /* control the gap */
+  --f: 5;   /* control the scale factor */
+
+  width: 100%;
+  margin: auto;
+
+  grid-template-rows: repeat(1, auto) ;
+  grid-template-columns: repeat(1,100%); */
+}
+
+.gallery > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  box-shadow: var(--box-shadow);
+}
+
+
+
+
+/* ======================Level design responsive  */
+
+@media screen and (min-width: 700px) {
+
+  .gallery {
+
+    display: grid;
+    gap: var(--g);
+    aspect-ratio: 2/1;
+    grid-template-columns: repeat(2,auto);
+  }
+
+  .gallery > img {
+    width: 0;
+    height: 0;
+    min-height: 100%;
+    min-width: 100%;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+
+  .gallery img:hover{
+    width:  calc(var(--s)*var(--f));
+    height: calc(var(--s)*var(--f));
+  
+  }
 
 }
 
-.galery img {
-  width: 50%;
-  flex-basis: 30%;
+
+
+@media screen and (min-width: 900px) {
+
+  .content {
+    width: 50%;
+  }
+
 }
 
+@media screen and (min-width: 1000px) {
+
+  .gallery {
+    width: 90%;
+    grid-template-columns: repeat(3,auto);
+  }
+
+  
+
+}
 
 /* ===============================
 FOOTER
@@ -410,6 +614,7 @@ FOOTER
 
 .contact_flex {
   display:flex;
+  flex-direction: column;
   align-items:center;
   justify-content: center;
   gap: 5em;
@@ -428,4 +633,15 @@ FOOTER
 .contact_flex a svg {
   min-height: 4em;
 }
+
+/* ======================footer responsive  */
+
+@media screen and (min-width: 400px) {
+
+  .contact_flex {
+    flex-direction: row;
+
+  }
+}
+
 
