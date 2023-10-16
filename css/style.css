@@ -6,8 +6,10 @@
   --title-font: 'Panchang', sans-serif;
 
   --color-white: rgba(194, 194, 194, 0.87);
-  --color-black: rgba(36, 36, 36, 1); 
-  /*#C2C2C2*/
+  --color-black: rgba(7, 10, 19, 1); 
+  /*#070A13*/
+
+
 
   --color-indigo: rgba(67, 56, 202, 1); 
   /*#4338ca*/
@@ -17,6 +19,7 @@
 
   --color-grey: #808F87;
   --color-orange: #DB7C26;
+
 
 
 
@@ -72,7 +75,7 @@ body {
 .container {
   margin: auto;
   max-width: 1500px;
-  padding: 1em;
+  padding: 5em 1em;
 
 }
 
@@ -226,7 +229,8 @@ nav ul li a {
 }
 
 
-.lang_switcher {
+
+/* .lang_switcher {
   padding: 0;
   font-weight: 500;
   color: var(--color-indigo);
@@ -239,8 +243,8 @@ nav ul li a {
   color: var(--color-indigo-light);
 
   background-color: transparent;
-  /* border: none; */
-}
+  border: none;
+} */
 
 
 /* ======================Header responsive  */
@@ -274,6 +278,7 @@ MAIN
 
 #profile {
   background-color: var(--color-indigo);
+
 }
 
 #profile article {
@@ -284,29 +289,40 @@ MAIN
 
 }
 
+#profile article h2 {
+  margin-top: 0;
+  font-size: 1.5em;
+ }
+
 #profile article p {
   width: 100%;
 }
 
 /* ======================Profile responsive */
 
-@media screen and (min-width: 650px) {
+@media screen and (min-width: 400px) {
 
-  #profile article {
-    text-align: left;
-  }
+ #profile article h2 {
+  font-size: 2.5em;
+ }
+
+
+}
+
+@media screen and (min-width: 650px) {
 
   #profile article p {
     width: 50%;
+    margin: auto;
   }
-
-  
-
 
 }
 
 /* ======================Projet */
 
+#project > h2 {
+  text-align: center;
+}
 
 .project {
   margin: 5em 0;
@@ -317,6 +333,8 @@ MAIN
   gap: 2em;
   flex-wrap: wrap;
 }
+
+
 
 
 .project > * {
@@ -336,9 +354,14 @@ MAIN
 }
 
 .project img {
+  display: none;
   width: 100%;
 
   box-shadow: var(--box-shadow);
+}
+
+.project img[class="show"] {
+  display: block;
 }
 
 
@@ -361,6 +384,8 @@ MAIN
   background-color: var(--color-black);
   
   border: 0.2em solid var(--color-indigo);
+
+  transition: 0.5s;
 }
 
 .modal > button {
@@ -420,8 +445,18 @@ MAIN
 
 /* ======================Level designe */
 
+#level_design > h2 {
+  text-align: center;
+}
+
 #level_design > article div {
-  width: 70%;
+  width: 100%;
+  /* text-align: center; */
+  margin: auto;
+}
+
+#level_design > article div h3 {
+  text-align: center;
 }
 
 /* ======================Accordeon */
@@ -442,6 +477,8 @@ MAIN
 .button-accordeon {
   position: relative;
   isolation: isolate;
+  z-index: 5;
+  
 
   width: 100%;
   min-height: 20em;
@@ -492,7 +529,14 @@ MAIN
 .accordeon-content {
   position: absolute;
   z-index: -1;
+
+  padding: 1em;
+
+  margin-bottom: 5em;
+
   opacity: 0;
+
+
 
 
 }
@@ -528,6 +572,10 @@ MAIN
   padding: 2em 0;
 }
 
+.content h3 {
+  text-align: center;
+}
+
 .content img {
   width: 100%;
 
@@ -544,7 +592,7 @@ MAIN
   margin: auto;
 
   grid-template-rows: repeat(1, auto) ;
-  grid-template-columns: repeat(1,100%); */
+  grid-template-columns: repeat(1,100%); 
 }
 
 .gallery > img {
@@ -608,16 +656,27 @@ MAIN
 
 }
 
+@media screen and (min-width: 1200px) {
+
+  #level_design > article div {
+    width: 50%;
+  }
+
+  
+
+
+}
+
 /* ===============================
 FOOTER
 =============================== */
 
 .contact_flex {
   display:flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items:center;
   justify-content: center;
-  gap: 5em;
+  gap: 2em;
 
   padding: 3em 0;
 
@@ -639,8 +698,9 @@ FOOTER
 @media screen and (min-width: 400px) {
 
   .contact_flex {
-    flex-direction: row;
-
+    gap: 5em;
+  
+  
   }
 }
 
