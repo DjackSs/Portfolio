@@ -493,7 +493,7 @@ MAIN
 }
 
 
-.button-accordeon > span > h3 {
+.button-accordeon > h3 {
   position: absolute;
   bottom: 0;
 

@@ -16,8 +16,8 @@ const accordeonMenu = ()=>
         
             button.classList.toggle("button-active");
 
-            // for map 1 and 3, opening_video and opened_video are loaded once their buttons have been clicked
-            if(!video.src && button.id != 2)
+            // Opening_video and opened_video are loaded once their buttons have been clicked
+            if(!video.src)
             {
                 // switch the idle video with opening video
                 video.src = `./video/map${button.id}_opening.mp4`;
@@ -27,7 +27,7 @@ const accordeonMenu = ()=>
                 // scwitch the poster image after 1s
                 setTimeout(()=>
                 {
-                    video.poster = `./image/map${button.id}_open_idle_frame.png`;
+                    video.poster = `./image/map${button.id}_open_idle_frame.webp`;
 
                 }, 1000);
                 

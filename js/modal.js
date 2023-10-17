@@ -38,7 +38,7 @@ const modal = ()=>
                         {
                             if(count > 1)
                             {
-                                src = src.replace(`${count}.png`,`${count-1}.png`);
+                                src = src.replace(`${count}.webp`,`${count-1}.webp`);
 
                                 modal.style.backgroundImage = `url("${src}")`;
 
@@ -47,7 +47,7 @@ const modal = ()=>
                             }
                             else
                             {
-                                src = src.replace(`${count}.png`,`${count+3}.png`);
+                                src = src.replace(`${count}.webp`,`${count+3}.webp`);
 
                                 modal.style.backgroundImage = `url("${src}")`;
 
@@ -61,7 +61,7 @@ const modal = ()=>
                         {
                             if(count < 4)
                             {
-                                src = src.replace(`${count}.png`,`${count+1}.png`);
+                                src = src.replace(`${count}.webp`,`${count+1}.webp`);
 
                                 modal.style.backgroundImage = `url("${src}")`;
 
@@ -70,7 +70,7 @@ const modal = ()=>
                             }
                             else
                             {
-                                src = src.replace(`${count}.png`,`${count-3}.png`);
+                                src = src.replace(`${count}.webp`,`${count-3}.webp`);
 
                                 modal.style.backgroundImage = `url("${src}")`;
 
