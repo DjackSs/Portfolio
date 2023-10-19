@@ -281,7 +281,7 @@ MAIN
 
 }
 
-#profile article {
+#profile > div {
   padding: 2em;
   text-align: center;
 
@@ -289,12 +289,12 @@ MAIN
 
 }
 
-#profile article h2 {
+#profile > div h2 {
   margin-top: 0;
   font-size: 1.5em;
  }
 
-#profile article p {
+#profile > div p {
   width: 100%;
 }
 
