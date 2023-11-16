@@ -356,15 +356,18 @@ MAIN
   margin: 2em 0;
 }
 
-.project > img {
-  display: none;
+.projet img {
   box-shadow: var(--box-shadow);
+}
+  
+
+.project > img {
+  width: 100%;
+  display: none;
 }
 
 .project a img {
   width: 100%;
-  box-shadow: var(--box-shadow);
-
 }
 
 .project img[class="show"] {
