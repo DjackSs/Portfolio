@@ -40,6 +40,15 @@ const headerAnimation = () =>
     let title = document.querySelector("h1").getBoundingClientRect();
     title.y += window.scrollY;
 
+    // let title2 = document.querySelector("h1");
+
+    // window;addEventListener("scroll", ()=>
+    // {
+    //     title2.style.transform = `translateY(${window.scrollY/4}px)`;
+
+
+    // })
+
 
 
     ctx.fillStyle = " #070A13";

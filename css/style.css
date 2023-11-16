@@ -150,6 +150,7 @@ HEADER
 
 #heading {
   position: relative;
+  z-index: -1;
   text-align: center;
 
   display: flex;
@@ -162,6 +163,7 @@ HEADER
 }
 
 #heading h1 {
+  
   font-size: 5em;
   padding: 0;
   margin: 0;
@@ -182,6 +184,7 @@ header canvas {
 header div[class="container"] {
   padding: 3em 0;
 }
+
 
 nav {
   gap: 1em;
@@ -353,11 +356,15 @@ MAIN
   margin: 2em 0;
 }
 
-.project img {
+.project > img {
   display: none;
-  width: 100%;
-
   box-shadow: var(--box-shadow);
+}
+
+.project a img {
+  width: 100%;
+  box-shadow: var(--box-shadow);
+
 }
 
 .project img[class="show"] {

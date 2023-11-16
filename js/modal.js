@@ -4,7 +4,7 @@ const modal = ()=>
 {
     const modal = document.querySelector("#modal");
 
-    const projectImgs = document.querySelectorAll(".project img");
+    const projectImgs = document.querySelectorAll(`.project img[class="show"]`);
 
 
     // -------------no modal on small screen / mobile
