@@ -365,6 +365,12 @@ MAIN
   width: 100%;
   display: none;
 }
+  
+
+.project > img {
+  width: 100%;
+  display: none;
+}
 
 .project a img {
   width: 100%;
